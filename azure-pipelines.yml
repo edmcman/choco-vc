@@ -13,4 +13,8 @@ jobs:
     vmImage: 'windows-latest'
 
   steps:
-  - script: echo hi $(name)
+  - script |
+      cd $(name)
+      choco pack
+      ls
+    displayName: Run choco pack
