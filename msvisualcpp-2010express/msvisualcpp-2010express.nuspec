@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>msvisualcpp-2010express</id>
+    <version>10.0.30319.1</version>
+    <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
+    <owners>Edward J. Schwartz</owners>
+
+    <title>Visual C++ 2010 Express</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0</projectUrl>
+    <docsUrl>https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2010/dd831853(v=vs.100)</docsUrl>
+    <tags>visual-c++</tags>
+    <summary>Microsoft Visual C++ 2010</summary>
+    <description>A historical version of Microsoft's Visual C++ compiler, Visual C++ 2010 Express, NOT including Service Pack 1.</description>
+
+    <dependencies>
+      <dependency id="imdisk" version="2.0.10.20181231" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
