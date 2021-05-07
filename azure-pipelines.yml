@@ -1,0 +1,34 @@
+trigger:
+- master
+
+jobs:
+- job: Build
+
+  strategy:
+    matrix:
+      msvisualcpp-2008expresssp1:
+        name: msvisualcpp-2008sp1express
+      msvisualcpp-2010express:
+        name: msvisualcpp-2010express
+
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - script: |
+      echo Building $(name)
+      cd $(name)
+      choco pack
+      cp *.nupkg $(Build.ArtifactStagingDirectory)/
+      echo $(Build.ArtifactStagingDirectory)
+      ls $(Build.ArtifactStagingDirectory)
+    displayName: Run choco pack to build $(name)
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'choco-vc/choco-vc'
+      allowPackageConflicts: true
+
