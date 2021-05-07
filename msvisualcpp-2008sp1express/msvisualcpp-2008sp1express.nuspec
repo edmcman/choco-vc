@@ -7,7 +7,7 @@
     <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
     <owners>Edward J. Schwartz</owners>
 
-    <title>Visual C++ 2008 Express w/ Service Pack 1</title>
+    <title>Visual C++ 2008 w/ Service Pack 1 Express</title>
     <authors>Microsoft</authors>
     <projectUrl>https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0</projectUrl>
     <docsUrl>https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2008/60k1461a(v=vs.90)</docsUrl>
