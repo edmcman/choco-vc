@@ -1,7 +1,16 @@
 trigger:
 - master
 
-extends:
-  template: template.yml
-  parameters:
-      name: msvirtualcpp-2008expresssp1
+jobs:
+- job: Build
+
+  strategy:
+    matrix:
+      msvirtualcpp-2008expresssp1:
+        name: msvirtualcpp-2008expresssp1
+
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - script: echo hi $(name)
