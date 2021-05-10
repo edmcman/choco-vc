@@ -7,5 +7,5 @@ imdisk -a -f "$env:temp\$packageName.iso" -m "w:"
 gci env:
 (gci env:*).GetEnumerator() | Sort-Object Name | Out-String
 echo $env:temp\vs.log
-Install-ChocolateyInstallPackage "$packageName" 'exe' '/Passive /norestart /log $env:temp\vs.log' 'w:\win8express_full.exe'
+Install-ChocolateyInstallPackage "$packageName" 'exe' '/Passive /norestart' 'w:\win8express_full.exe'
 imdisk -d -m w:
