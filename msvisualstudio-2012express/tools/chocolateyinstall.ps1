@@ -4,8 +4,8 @@ $url        = 'https://download.microsoft.com/download/6/e/c/6ec5b3cf-cc0d-448a-
 
 Get-ChocolateyWebFile -PackageName "$packageName" -FileFullPath "$env:temp\$packageName.iso" -Checksum "A6F0666994634FEC4AD39ADF0793E7CDA16241002FA1581DE06ABAF066A9D75600EC91CC4D921667F4005273DEB680CCAF71BD51CAE2BD3C607DD19976775BDB" -ChecksumType sha512 -Url "$url"
 imdisk -a -f "$env:temp\$packageName.iso" -m "w:"
-dir env:
-echo $env:tmp\vs.log
+gci env:
+(gci env:*).GetEnumerator() | Sort-Object Name | Out-String
 echo $env:temp\vs.log
 Install-ChocolateyInstallPackage "$packageName" 'exe' '/Passive /norestart /log $env:temp\vs.log' 'w:\win8express_full.exe'
 imdisk -d -m w:
