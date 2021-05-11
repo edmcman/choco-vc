@@ -10,6 +10,8 @@ jobs:
         name: msvisualcpp-2008sp1express
       msvisualcpp-2010express:
         name: msvisualcpp-2010express
+      msvisualstudio-2012express:
+        name: msvisualstudio-2012express
       msvisualstudio-2012professional:
         name: msvisualstudio-2012professional
 
