@@ -2,18 +2,18 @@
 
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>msvisualstudio-2012express</id>
-    <version>11.0.50727.1-rc6</version>
+    <id>msvisualstudio-2012professional</id>
+    <version>11.0.50727.1-rc7</version>
     <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
     <owners>Edward J. Schwartz</owners>
 
-    <title>Visual Studio 2012 Express</title>
+    <title>Visual Studio 2012 Professional</title>
     <authors>Microsoft</authors>
     <projectUrl>https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0</projectUrl>
     <docsUrl>https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2012/dd831853(v=vs.110)</docsUrl>
     <tags>visual-studio</tags>
-    <summary>Microsoft Visual Studio 2012 Express</summary>
-    <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2012 Express.</description>
+    <summary>Microsoft Visual Studio 2012 Professional</summary>
+    <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2012 Professional.</description>
 
     <dependencies>
       <dependency id="imdisk" version="2.0.10.20181231" />
