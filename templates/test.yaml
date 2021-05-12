@@ -13,9 +13,10 @@ jobs:
         chocolatey | "$(Agent.OS)"
       path: $(CHOCOLATEY_CACHE_DIR)
       displayName: Chocolatey cache
-  - download: current
-    artifact: ${{ parameters.name }}
-    path: $(Build.ArtifactStagingDirectory)
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: ${{ parameters.name }}
+      path: $(Build.ArtifactStagingDirectory)
   - script: choco source add -n=local -s "$(Build.ArtifactStagingDirectory)"
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"

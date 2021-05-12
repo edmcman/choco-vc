@@ -6,9 +6,10 @@ jobs:
   dependsOn: test_${{ replace(parameters.name, '-', '_') }}
   displayName: Deploy ${{ parameters.name }} package to Azure artifacts repository for testing
   steps:
-  - download: current
-    artifact: ${{ parameters.name }}
-    path: $(Build.ArtifactStagingDirectory)
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: ${{ parameters.name }}
+      path: $(Build.ArtifactStagingDirectory)
   - task: NuGetAuthenticate@0
     displayName: 'NuGet Authenticate'
   - task: NuGetCommand@2
@@ -29,7 +30,6 @@ jobs:
         steps:
         - download: current
           artifact: ${{ parameters.name }}
-          path: $(Build.ArtifactStagingDirectory)
           displayName: 'Download nuget packages'
 
         - script: choco push *.nupkg --source https://push.chocolatey.org/ --apikey $(chocolate-api-key)
