@@ -2,13 +2,13 @@ parameters:
   name: ""
 
 stages:
-  - stage: build-${{parameters.name}}
+  - stage: build-${{ parameters.name }}
     pool:
       vmImage: 'windows-latest'
-    displayName: Build chocolatey package ${{parameters.name}}
+    displayName: Build chocolatey package ${{ parameters.name }}
     jobs:
-    - job: build-${{parameters.name}}-job
-      displayName: Build, Pack and Test ${{parameters.name}}
+    - job: build-${{ parameters.name }}-job
+      displayName: Build, Pack and Test ${{ parameters.name }}
       steps:
       - task: gitversion/setup@0
         displayName: Install GitVersion
@@ -17,17 +17,17 @@ stages:
       - task: gitversion/execute@0
         displayName: Determine Version
       - script: |
-        echo Building ${{parameters.name}}
-        cd ${{parameters.name}}
+        echo Building ${{ parameters.name }}
+        cd ${{ parameters.name }}
         choco pack
         cp *.nupkg $(Build.ArtifactStagingDirectory)/
         echo $(Build.ArtifactStagingDirectory)
         ls $(Build.ArtifactStagingDirectory)
-        displayName: Run choco pack to build ${{parameters.name}}
+        displayName: Run choco pack to build ${{ parameters.name }}
 
       - task: Cache@2
       inputs:
-        key: 'chocolatey | "$(Agent.OS)" | "${{parameters.name}}" '
+        key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
         restoreKeys: |
           chocolatey | "$(Agent.OS)"
         path: $(CHOCOLATEY_CACHE_DIR)
@@ -36,8 +36,8 @@ stages:
         displayName: Add chocolatey repo
       - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
         displayName: Set chocolatey cache dir
-      - script: choco install --pre ${{parameters.name}}
-        displayName: Install new chocolatey package ${{parameters.name}}
+      - script: choco install --pre ${{ parameters.name }}
+        displayName: Install new chocolatey package ${{ parameters.name }}
 
       - task: NuGetAuthenticate@0
         displayName: 'NuGet Authenticate'
