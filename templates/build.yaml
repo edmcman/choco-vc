@@ -17,12 +17,12 @@ stages:
       - task: gitversion/execute@0
         displayName: Determine Version
       - script: |
-        echo Building ${{ parameters.name }}
-        cd ${{ parameters.name }}
-        choco pack
-        cp *.nupkg $(Build.ArtifactStagingDirectory)/
-        echo $(Build.ArtifactStagingDirectory)
-        ls $(Build.ArtifactStagingDirectory)
+          echo Building ${{ parameters.name }}
+          cd ${{ parameters.name }}
+          choco pack
+          cp *.nupkg $(Build.ArtifactStagingDirectory)/
+          echo $(Build.ArtifactStagingDirectory)
+          ls $(Build.ArtifactStagingDirectory)
         displayName: Run choco pack to build ${{ parameters.name }}
 
       - task: Cache@2
