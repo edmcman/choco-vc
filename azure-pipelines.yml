@@ -5,64 +5,27 @@ variables:
 trigger:
 - master
 
-jobs:
-- job: Build
+stages:
+- template: templates/build.yaml
+  parameters:
+    name: msvisualcpp-2008sp1express
 
-  strategy:
-    matrix:
-      msvisualcpp-2008expresssp1:
-        name: msvisualcpp-2008sp1express
+- template: templates/build.yaml
+  parameters:
+    name: msvisualcpp-2010express
 
-      msvisualcpp-2010express:
-        name: msvisualcpp-2010express
+- template: templates/build.yaml
+  parameters:
+    name: msvisualstudio-2012express
 
-      msvisualstudio-2012express:
-        name: msvisualstudio-2012express
+# - template: templates/build.yaml
+#   parameters:
+#     name: msvisualstudio-2012professional
 
-      msvisualstudio-2012professional:
-        name: msvisualstudio-2012professional
+- template: templates/build.yaml
+  parameters:
+    name: msvisualstudio-2013express
 
-      msvisualstudio-2013express:
-        name: msvisualstudio-2013express
-
-      msvisualstudio-2015express:
-        name: msvisualstudio-2015express
-
-  pool:
-    vmImage: 'windows-latest'
-
-  steps:
-  - script: |
-      echo Building $(name)
-      cd $(name)
-      choco pack
-      cp *.nupkg $(Build.ArtifactStagingDirectory)/
-      echo $(Build.ArtifactStagingDirectory)
-      ls $(Build.ArtifactStagingDirectory)
-    displayName: Run choco pack to build $(name)
-
-  - task: Cache@2
-    inputs:
-      key: 'chocolatey | "$(Agent.OS)" | "$(name)" '
-      # Even if we don't have a cache for chocoPackage, better to use _a_ cache since it should include cmake
-      restoreKeys: |
-        chocolatey | "$(Agent.OS)"
-      path: $(CHOCOLATEY_CACHE_DIR)
-    displayName: Chocolatey cache
-  # - script: choco source add -n=ed -s "$(CHOCOLATEY_REPO)"
-  #   displayName: Add chocolatey repo
-  - script: choco source add -n=local -s "$(Build.ArtifactStagingDirectory)"
-    displayName: Add chocolatey repo
-  - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
-    displayName: Set chocolatey cache dir
-  - script: choco install --pre $(name)
-    displayName: Install new chocolatey package $(name)
-
-  - task: NuGetAuthenticate@0
-    displayName: 'NuGet Authenticate'
-  - task: NuGetCommand@2
-    displayName: 'NuGet push'
-    inputs:
-      command: push
-      publishVstsFeed: 'choco-vc/choco-vc'
-      allowPackageConflicts: true
+- template: templates/build.yaml
+  parameters:
+    name: msvisualstudio-2015express
