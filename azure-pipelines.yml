@@ -40,14 +40,6 @@ jobs:
       echo $(Build.ArtifactStagingDirectory)
       ls $(Build.ArtifactStagingDirectory)
     displayName: Run choco pack to build $(name)
-  - task: NuGetAuthenticate@0
-    displayName: 'NuGet Authenticate'
-  - task: NuGetCommand@2
-    displayName: 'NuGet push'
-    inputs:
-      command: push
-      publishVstsFeed: 'choco-vc/choco-vc'
-      allowPackageConflicts: true
 
   - task: Cache@2
     inputs:
@@ -57,9 +49,20 @@ jobs:
         chocolatey | "$(Agent.OS)"
       path: $(CHOCOLATEY_CACHE_DIR)
     displayName: Chocolatey cache
-  - script: choco source add -n=ed -s "$(CHOCOLATEY_REPO)"
+  # - script: choco source add -n=ed -s "$(CHOCOLATEY_REPO)"
+  #   displayName: Add chocolatey repo
+  - script: choco source add -n=local -s "$(Build.ArtifactStagingDirectory)"
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: choco install $(name)
+  - script: choco install --pre $(name)
     displayName: Install new chocolatey package $(name)
+
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'choco-vc/choco-vc'
+      allowPackageConflicts: true
