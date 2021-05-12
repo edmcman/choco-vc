@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>msvisualstudio-2013express</id>
-    <version>11.0.50727.1-rc8</version>
+    <version>11.0.50727.1-rc9</version>
     <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
     <owners>Edward J. Schwartz</owners>
 
@@ -15,9 +15,6 @@
     <summary>Microsoft Visual Studio 2013 Express</summary>
     <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2013 Express.</description>
 
-    <dependencies>
-      <dependency id="imdisk" version="2.0.10.20181231" />
-    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
