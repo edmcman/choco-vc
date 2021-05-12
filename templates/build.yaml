@@ -7,7 +7,7 @@ stages:
       vmImage: 'windows-latest'
     displayName: Build chocolatey package ${{ parameters.name }}
     jobs:
-    - job: build-${{ parameters.name }}-job
+    - job: ${{ replace(parameters.name, '-', '_') }}
       displayName: Build, Pack and Test ${{ parameters.name }}
       steps:
       - task: UseGitVersion@5
