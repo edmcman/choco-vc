@@ -2,18 +2,18 @@
 
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>msvisualstudio-2013express</id>
-    <version>12.0.21005.1-rc91</version>
+    <id>msvisualstudio-2015express</id>
+    <version>FIXME</version>
     <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
     <owners>Edward J. Schwartz</owners>
 
-    <title>Visual Studio 2013 Express</title>
+    <title>Visual Studio 2015 Express</title>
     <authors>Microsoft</authors>
     <projectUrl>https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0</projectUrl>
-    <docsUrl>https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/dd831853(v=vs.120)</docsUrl>
+    <docsUrl>https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/welcome-to-visual-studio-2015?view=vs-2015</docsUrl>
     <tags>visual-studio</tags>
-    <summary>Microsoft Visual Studio 2013 Express</summary>
-    <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2013 Express.</description>
+    <summary>Microsoft Visual Studio 2015 Express</summary>
+    <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2015 Express.</description>
 
   </metadata>
   <files>

@@ -21,6 +21,9 @@ jobs:
       msvisualstudio-2013express:
         name: msvisualstudio-2013express
 
+      msvisualstudio-2015express:
+        name: msvisualstudio-2015express
+
   pool:
     vmImage: 'windows-latest'
 
