@@ -2,7 +2,7 @@ parameters:
   name: ""
 
 stages:
-  - stage: build-${{ parameters.name }}
+  - stage: build_${{ parameters.name }}
     pool:
       vmImage: 'windows-latest'
     displayName: Build chocolatey package ${{ parameters.name }}
