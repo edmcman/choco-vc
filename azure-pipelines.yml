@@ -1,3 +1,7 @@
+variables:
+  CHOCOLATEY_CACHE_DIR: $(Pipeline.Workspace)\chocolatey_cache
+  CHOCOLATEY_REPO: 'https://pkgs.dev.azure.com/edmcman/choco-vc/_packaging/choco-vc@Local/nuget/v2'
+
 trigger:
 - master
 
@@ -45,3 +49,17 @@ jobs:
       publishVstsFeed: 'choco-vc/choco-vc'
       allowPackageConflicts: true
 
+  - task: Cache@2
+    inputs:
+      key: 'chocolatey | "$(Agent.OS)" | "$(name)" '
+      # Even if we don't have a cache for chocoPackage, better to use _a_ cache since it should include cmake
+      restoreKeys: |
+        chocolatey | "$(Agent.OS)"
+      path: $(CHOCOLATEY_CACHE_DIR)
+    displayName: Chocolatey cache
+  - script: choco source add -n=ed -s "$(CHOCOLATEY_REPO)"
+    displayName: Add chocolatey repo
+  - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
+    displayName: Set chocolatey cache dir
+  - script: choco install $(name)
+    displayName: Install new chocolatey package $(name)
