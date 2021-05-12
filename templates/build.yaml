@@ -26,11 +26,11 @@ stages:
         displayName: Run choco pack to build ${{ parameters.name }}
 
       - task: Cache@2
-      inputs:
-        key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
-        restoreKeys: |
-          chocolatey | "$(Agent.OS)"
-        path: $(CHOCOLATEY_CACHE_DIR)
+        inputs:
+          key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
+          restoreKeys: |
+            chocolatey | "$(Agent.OS)"
+          path: $(CHOCOLATEY_CACHE_DIR)
       displayName: Chocolatey cache
       - script: choco source add -n=local -s "$(Build.ArtifactStagingDirectory)"
         displayName: Add chocolatey repo
