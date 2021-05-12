@@ -17,7 +17,7 @@ jobs:
       useConfigFile: true
       configFilePath: '.gitversion.master.yml'
     displayName: Set version using gitversion for master branch
-  - script: |
+  - powershell: |
       Set-PSDebug -Trace 1
       $ver = "$(GitVersion.SemVer)"
       if ($ver -ne "") {
