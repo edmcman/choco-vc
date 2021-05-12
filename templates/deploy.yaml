@@ -1,0 +1,20 @@
+parameters:
+  name: ""
+
+jobs:
+- job: localdeploy_${{ replace(parameters.name, '-', '_') }}
+  dependsOn: test_${{ replace(parameters.name, '-', '_') }}
+  displayName: Deploy ${{ parameters.name }} package to Azure artifacts repository for testing
+  steps:
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: ${{ parameters.name }}
+      path: $(Build.ArtifactStagingDirectory)
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'choco-vc/choco-vc'
+      allowPackageConflicts: true

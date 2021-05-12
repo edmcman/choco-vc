@@ -14,3 +14,6 @@ stages:
     - template: test.yaml
       parameters:
         name: ${{ parameters.name }}
+    - template: deploy.yaml
+      parameters:
+        name: ${{ parameters.name }}

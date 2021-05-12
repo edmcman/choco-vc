@@ -24,12 +24,3 @@ jobs:
   - script: choco install --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
 
-  # - task: NuGetAuthenticate@0
-  #   displayName: 'NuGet Authenticate'
-  # - task: NuGetCommand@2
-  #   displayName: 'NuGet push'
-  #   inputs:
-  #     command: push
-  #     publishVstsFeed: 'choco-vc/choco-vc'
-  #     allowPackageConflicts: true
-
