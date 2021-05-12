@@ -20,7 +20,7 @@ jobs:
   - powershell: |
       Set-PSDebug -Trace 1
       cd ${{ parameters.name }}
-      $ver = "$(GitVersion.SemVer)"
+      $ver = "$(GitVersion.NuGetVersionV2)"
       if ($ver -ne "") {
         choco pack --version $ver
       } else {
