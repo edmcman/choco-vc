@@ -6,10 +6,9 @@ jobs:
   dependsOn: test_${{ replace(parameters.name, '-', '_') }}
   displayName: Deploy ${{ parameters.name }} package to Azure artifacts repository for testing
   steps:
-  - task: DownloadPipelineArtifact@2
-    inputs:
-      artifact: ${{ parameters.name }}
-      path: $(Build.ArtifactStagingDirectory)
+  - download: current
+    artifact: ${{ parameters.name }}
+    path: $(Build.ArtifactStagingDirectory)
   - task: NuGetAuthenticate@0
     displayName: 'NuGet Authenticate'
   - task: NuGetCommand@2
@@ -18,3 +17,20 @@ jobs:
       command: push
       publishVstsFeed: 'choco-vc/choco-vc'
       allowPackageConflicts: true
+
+- deployment: chocolateydeploy_${{ replace(parameters.name, '-', '_') }}
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  dependsOn: test_${{ replace(parameters.name, '-', '_') }}
+  displayName: Deploy ${{ parameters.name }} package to Chocolatey
+  environment: chocolatey-publish-public
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - download: current
+          artifact: ${{ parameters.name }}
+          path: $(Build.ArtifactStagingDirectory)
+          displayName: 'Download nuget packages'
+
+        - script: choco push *.nupkg --source https://push.chocolatey.org/ --apikey $(chocolate-api-key)
+          displayName: 'Uploading chocolatey package'
