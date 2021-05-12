@@ -3,7 +3,6 @@ parameters:
 
 jobs:
 - job: build_${{ replace(parameters.name, '-', '_') }}
-  displayName: Build chocolatey package ${{ parameters.name }}
   displayName: Build, Pack and Test ${{ parameters.name }}
   steps:
   - task: gitversion/setup@0
