@@ -10,12 +10,15 @@ stages:
     - job: build-${{ parameters.name }}-job
       displayName: Build, Pack and Test ${{ parameters.name }}
       steps:
-      - task: gitversion/setup@0
+        - task: UseGitVersion@5
+          displayName: gitversion
+          inputs:
+            versionSpec: '5.x'
+            updateAssemblyInfo: true
+        - task: gitversion/setup@0
         displayName: Install GitVersion
         inputs:
           versionSpec: '5.5.0'
-      - task: gitversion/execute@0
-        displayName: Determine Version
       - script: |
           echo Building ${{ parameters.name }}
           cd ${{ parameters.name }}
