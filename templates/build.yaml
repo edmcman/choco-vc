@@ -4,13 +4,18 @@ parameters:
 jobs:
 - job: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Build, Pack and Test ${{ parameters.name }}
+  variables:
+    VERSION_NUMBER: 1.2.3
   steps:
   - task: gitversion/setup@0
     displayName: Install GitVersion
     inputs:
       versionSpec: '5.x'
   - task: gitversion/execute@0
-    displayName: Determine Version
+    inputs:
+      useConfigFile: true
+      configFilePath: '.gitversion.master.yml'
+      displayName: Determine Version
   - script: |
       echo Building ${{ parameters.name }}
       cd ${{ parameters.name }}

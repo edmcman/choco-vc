@@ -1,0 +1,7 @@
+mode: ContinuousDeployment
+assembly-versioning-format: '{env:VERSION_NUMBER ?? 42}.{Major}.{Minor}.{Patch}'
+next-version: 1.0.0
+branches: {}
+ignore:
+  sha: []
+merge-message-formats: {}
