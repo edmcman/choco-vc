@@ -19,12 +19,13 @@ jobs:
     displayName: Set version using gitversion for master branch
   - powershell: |
       Set-PSDebug -Trace 1
+      cd ${{ parameters.name }}
       $ver = "$(GitVersion.SemVer)"
       if ($ver -ne "") {
-        $ver = "--version $ver"
+        choco pack --version $ver
+      } else {
+        choco pack
       }
-      cd ${{ parameters.name }}
-      choco pack $ver
       cp *.nupkg $(Build.ArtifactStagingDirectory)/
       echo $(Build.ArtifactStagingDirectory)
       ls $(Build.ArtifactStagingDirectory)
