@@ -12,14 +12,19 @@ jobs:
     inputs:
       versionSpec: '5.x'
   - task: gitversion/execute@0
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     inputs:
       useConfigFile: true
       configFilePath: '.gitversion.master.yml'
-      displayName: Determine Version
+    displayName: Set version using gitversion for master branch
   - script: |
-      echo Building ${{ parameters.name }}
+      Set-PSDebug -Trace 1
+      $ver = "$(GitVersion.SemVer)"
+      if ($ver -ne "") {
+        $ver = "--version $ver"
+      }
       cd ${{ parameters.name }}
-      choco pack
+      choco pack $ver
       cp *.nupkg $(Build.ArtifactStagingDirectory)/
       echo $(Build.ArtifactStagingDirectory)
       ls $(Build.ArtifactStagingDirectory)
