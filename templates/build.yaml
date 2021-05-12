@@ -3,6 +3,7 @@ parameters:
 
 stages:
   - stage: build_${{ replace(parameters.name, '-', '_') }}
+    dependsOn: []
     pool:
       vmImage: 'windows-latest'
     displayName: Build chocolatey package ${{ parameters.name }}
