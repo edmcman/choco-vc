@@ -8,9 +8,9 @@ stages:
     vmImage: 'windows-latest'
   displayName: Build, Test, and Deploy ${{ parameters.name }}
   jobs:
-    - template: templates/build.yaml
+    - template: build.yaml
       parameters:
         name: ${{ parameters.name }}
-    - template: templates/test.yaml
+    - template: test.yaml
       parameters:
         name: ${{ parameters.name }}
