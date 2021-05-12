@@ -1,31 +1,26 @@
 parameters:
   name: ""
 
-stages:
-  - stage: build_${{ replace(parameters.name, '-', '_') }}
-    dependsOn: []
-    pool:
-      vmImage: 'windows-latest'
-    displayName: Build chocolatey package ${{ parameters.name }}
-    jobs:
-    - job: ${{ replace(parameters.name, '-', '_') }}
-      displayName: Build, Pack and Test ${{ parameters.name }}
-      steps:
-      - task: gitversion/setup@0
-        displayName: Install GitVersion
-        inputs:
-          versionSpec: '5.x'
-      - task: gitversion/execute@0
-        displayName: Determine Version
-      - script: |
-          echo Building ${{ parameters.name }}
-          cd ${{ parameters.name }}
-          choco pack
-          cp *.nupkg $(Build.ArtifactStagingDirectory)/
-          echo $(Build.ArtifactStagingDirectory)
-          ls $(Build.ArtifactStagingDirectory)
-        displayName: Run choco pack to build ${{ parameters.name }}
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathToPublish: '$(Build.ArtifactStagingDirectory)'
-          artifactName: ${{ parameters.name }}
+jobs:
+- job: build_${{ replace(parameters.name, '-', '_') }}
+  displayName: Build chocolatey package ${{ parameters.name }}
+  displayName: Build, Pack and Test ${{ parameters.name }}
+  steps:
+  - task: gitversion/setup@0
+    displayName: Install GitVersion
+    inputs:
+      versionSpec: '5.x'
+  - task: gitversion/execute@0
+    displayName: Determine Version
+  - script: |
+      echo Building ${{ parameters.name }}
+      cd ${{ parameters.name }}
+      choco pack
+      cp *.nupkg $(Build.ArtifactStagingDirectory)/
+      echo $(Build.ArtifactStagingDirectory)
+      ls $(Build.ArtifactStagingDirectory)
+    displayName: Run choco pack to build ${{ parameters.name }}
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: ${{ parameters.name }}

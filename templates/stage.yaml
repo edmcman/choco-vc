@@ -1,0 +1,16 @@
+parameters:
+  name: ""
+
+stages:
+- stage: ${{ replace(parameters.name, '-', '_') }}
+  dependsOn: []
+  pool:
+    vmImage: 'windows-latest'
+  displayName: Build, Test, and Deploy ${{ parameters.name }}
+  jobs:
+    - template: templates/build.yaml
+      parameters:
+        name: ${{ parameters.name }}
+    - template: templates/test.yaml
+      parameters:
+        name: ${{ parameters.name }}

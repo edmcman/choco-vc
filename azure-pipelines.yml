@@ -6,41 +6,26 @@ trigger:
 - master
 
 stages:
-- template: templates/build.yaml
-  parameters:
-    name: msvisualcpp-2008sp1express
-- template: templates/test.yaml
+- template: templates/stage.yaml
   parameters:
     name: msvisualcpp-2008sp1express
 
-- template: templates/build.yaml
-  parameters:
-    name: msvisualcpp-2010express
-- template: templates/test.yaml
+- template: templates/stage.yaml
   parameters:
     name: msvisualcpp-2010express
 
-- template: templates/build.yaml
-  parameters:
-    name: msvisualstudio-2012express
-- template: templates/test.yaml
+- template: templates/stage.yaml
   parameters:
     name: msvisualstudio-2012express
 
-# - template: templates/build.yaml
+# - template: templates/stage.yaml
 #   parameters:
 #     name: msvisualstudio-2012professional
 
-- template: templates/build.yaml
-  parameters:
-    name: msvisualstudio-2013express
-- template: templates/test.yaml
+- template: templates/stage.yaml
   parameters:
     name: msvisualstudio-2013express
 
-- template: templates/build.yaml
-  parameters:
-    name: msvisualstudio-2015express
-- template: templates/test.yaml
+- template: templates/stage.yaml
   parameters:
     name: msvisualstudio-2015express

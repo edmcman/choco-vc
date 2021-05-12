@@ -1,36 +1,30 @@
 parameters:
   name: ""
 
-stages:
-  - stage: test_${{ replace(parameters.name, '-', '_') }}
-    dependsOn: build_${{ replace(parameters.name, '-', '_') }}
-    pool:
-      vmImage: 'windows-latest'
-    displayName: Install chocolatey package ${{ parameters.name }}
-    jobs:
-    - job: ${{ replace(parameters.name, '-', '_') }}
-      displayName: Test ${{ parameters.name }}
-      steps:
-      - task: Cache@2
-        inputs:
-          key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
-          restoreKeys: |
-            chocolatey | "$(Agent.OS)"
-          path: $(CHOCOLATEY_CACHE_DIR)
-        displayName: Chocolatey cache
-      - script: choco source add -n=local -s "$(Build.ArtifactStagingDirectory)"
-        displayName: Add chocolatey repo
-      - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
-        displayName: Set chocolatey cache dir
-      - script: choco install --pre ${{ parameters.name }}
-        displayName: Install new chocolatey package ${{ parameters.name }}
+jobs:
+- job: test_${{ replace(parameters.name, '-', '_') }}
+  displayName: Test ${{ parameters.name }}
+  steps:
+  - task: Cache@2
+    inputs:
+      key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
+      restoreKeys: |
+        chocolatey | "$(Agent.OS)"
+      path: $(CHOCOLATEY_CACHE_DIR)
+      displayName: Chocolatey cache
+  - script: choco source add -n=local -s "$(Build.ArtifactStagingDirectory)"
+    displayName: Add chocolatey repo
+  - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
+    displayName: Set chocolatey cache dir
+  - script: choco install --pre ${{ parameters.name }}
+    displayName: Install new chocolatey package ${{ parameters.name }}
 
-      - task: NuGetAuthenticate@0
-        displayName: 'NuGet Authenticate'
-      - task: NuGetCommand@2
-        displayName: 'NuGet push'
-        inputs:
-          command: push
-          publishVstsFeed: 'choco-vc/choco-vc'
-          allowPackageConflicts: true
+  # - task: NuGetAuthenticate@0
+  #   displayName: 'NuGet Authenticate'
+  # - task: NuGetCommand@2
+  #   displayName: 'NuGet push'
+  #   inputs:
+  #     command: push
+  #     publishVstsFeed: 'choco-vc/choco-vc'
+  #     allowPackageConflicts: true
 
