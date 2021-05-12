@@ -16,9 +16,9 @@ stages:
             versionSpec: '5.x'
             updateAssemblyInfo: true
         - task: gitversion/setup@0
-        displayName: Install GitVersion
-        inputs:
-          versionSpec: '5.5.0'
+          displayName: Install GitVersion
+          inputs:
+            versionSpec: '5.5.0'
       - script: |
           echo Building ${{ parameters.name }}
           cd ${{ parameters.name }}
