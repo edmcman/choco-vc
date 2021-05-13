@@ -4,6 +4,7 @@ variables:
 
 trigger:
 - master
+- release
 
 stages:
 - template: templates/stage.yaml
