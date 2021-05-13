@@ -3,7 +3,7 @@ parameters:
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
-  container: mcr.microsoft.com/windows:SAC
+  container: mcr.microsoft.com/windows:1809-amd64
   dependsOn: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Test ${{ parameters.name }}
   steps:
