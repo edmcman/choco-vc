@@ -24,7 +24,7 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: choco install --pre ${{ parameters.name }}
+  - script: choco install -y --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
   - script: choco install -y cmake
     displayName: Install cmake
