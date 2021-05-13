@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>msvisualstudio-2015express</id>
-    <version>14.0.23107.0-rc1</version>
+    <version>14.0.23107.0</version>
     <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
     <owners>Edward J. Schwartz</owners>
 
