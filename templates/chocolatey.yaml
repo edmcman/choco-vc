@@ -4,7 +4,6 @@ parameters:
 jobs:
 - deployment: chocolateydeploy_${{ replace(parameters.name, '-', '_') }}
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
-  dependsOn: test_${{ replace(parameters.name, '-', '_') }}
   displayName: Deploy ${{ parameters.name }} package to Chocolatey
   environment: chocolatey-publish-public
   strategy:
