@@ -3,7 +3,7 @@ parameters:
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
-  container: chocolateyfest/chocolatey
+  container: mcr.microsoft.com/windows/servercore:ltsc2019
   dependsOn: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Test ${{ parameters.name }}
   steps:
