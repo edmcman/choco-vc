@@ -24,4 +24,15 @@ jobs:
     displayName: Set chocolatey cache dir
   - script: choco install --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
+  - script: choco install -y cmake
+    displayName: Install cmake
+  - script: |
+      @echo on
+      cd tests
+      mkdir build
+      cd build
+      echo "##vso[task.prependpath]%ProgramFiles%\\cmake\\bin"
+      cmake.exe ..
+      cmake.exe --build . --verbose
+    displayName: Sanity check the compiler
 
