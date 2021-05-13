@@ -3,6 +3,7 @@ parameters:
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
+  container: chocolateyfest/chocolatey
   dependsOn: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Test ${{ parameters.name }}
   steps:
