@@ -3,7 +3,7 @@ parameters:
 
 jobs:
 - job: build_${{ replace(parameters.name, '-', '_') }}
-  displayName: Build, Pack and Test ${{ parameters.name }}
+  displayName: Build and Pack ${{ parameters.name }}
   variables:
     VERSION_NUMBER: 1.2.3
   steps:
