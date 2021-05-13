@@ -24,10 +24,10 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: echo "##vso[task.prependpath]%SystemRoot%\\windows32
-    displayName: Add system32 to path to work-around bug in the imdisk package
-  - script: dir %SystemRoot%\\windows32
-  - script: echo %path%
+  # - script: echo "##vso[task.prependpath]%SystemRoot%\\windows32
+  #   displayName: Add system32 to path to work-around bug in the imdisk package
+  # - script: dir %SystemRoot%\\windows32
+  # - script: echo %path%
   - script: choco install -y --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
   - script: choco install -y cmake

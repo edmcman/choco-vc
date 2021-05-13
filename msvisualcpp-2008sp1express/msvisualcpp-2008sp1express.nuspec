@@ -14,10 +14,6 @@
     <tags>vcpp2008sp1express visual-c++</tags>
     <summary>Microsoft Visual C++ 2008 Express w/ Service Pack 1</summary>
     <description>A historical version of Microsoft's Visual C++ compiler, Visual C++ 2008 Express including Service Pack 1.</description>
-
-    <dependencies>
-      <dependency id="imdisk" version="2.0.10.20181231" />
-    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
