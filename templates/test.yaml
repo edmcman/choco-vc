@@ -7,6 +7,8 @@ jobs:
   dependsOn: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Test ${{ parameters.name }}
   steps:
+  - powershell: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    displayName: Install chocolatey
   - task: Cache@2
     inputs:
       key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
