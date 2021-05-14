@@ -3,7 +3,7 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $url        = 'https://go.microsoft.com/fwlink/?LinkId=615448&clcid=0x409'
 
 $iso = "$env:temp\$packageName.iso"
-Get-ChocolateyWebFile -PackageName "$packageName" -FileFullPath "$iso" -Checksum "618703727411BE10F06266CA4932A2D9BD3FA9664C069EB1DBA6EC25F22DDE84401DFE23BFCC9ABD419439AC6DA2158A4F8F2A7365E4CF843E8E32A74CA5F184" -ChecksumType sha512 -Url "$url"
+Get-ChocolateyWebFile -PackageName "$packageName" -FileFullPath "$iso" -Checksum "035E2E7582D2AC8359D9C23991BEA755FEB490C5D01061F397D2C4DF8A68D24B6568E2485646E40F127DAB8543E3FEAA22FC9ABFCE678F0C7D63A242D7C46984" -ChecksumType sha512 -Url "$url"
 
 Mount-DiskImage -ImagePath $iso
 
