@@ -34,6 +34,6 @@ stages:
 
 - template: templates/stage.yaml
   parameters:
-    name: msvisualstudio-2015express
+    name: msvisualstudio-2015community
     cmakeGenName: "Visual Studio 14 2015"
 
