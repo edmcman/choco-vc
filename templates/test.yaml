@@ -28,7 +28,7 @@ jobs:
   #   displayName: Add system32 to path to work-around bug in the imdisk package
   # - script: dir %SystemRoot%\\windows32
   # - script: echo %path%
-  - script: choco install -y --pre ${{ parameters.name }}
+  - script: choco install -y --execution-timeout 3600 --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
   - script: choco install -y cmake
     displayName: Install cmake
