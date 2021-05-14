@@ -11,7 +11,7 @@ Mount-DiskImage -ImagePath $iso
 $driveLetter = (Get-DiskImage $iso | Get-Volume).DriveLetter
 
 # Run commands against the mounted ISO, in this case, run the setup.exe
-Install-ChocolateyInstallPackage "$packageName" 'exe' "/q /norestart /log $env:temp\vs.log" "${driveLetter}:\wdexpress_full.exe"
+Install-ChocolateyInstallPackage "$packageName" 'exe' "/q /norestart /log $env:temp\vs.log" "${driveLetter}:\vs_community.exe"
 
 # Unmount the ISO file when finished
 Dismount-DiskImage -ImagePath $iso
