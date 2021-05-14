@@ -5,7 +5,7 @@ jobs:
 - job: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Build and Pack ${{ parameters.name }}
   variables:
-    VERSION_NUMBER: 1.2.3
+    GitVersion.NuGetVersionV2: ''
   steps:
   - task: gitversion/setup@0
     displayName: Install GitVersion
