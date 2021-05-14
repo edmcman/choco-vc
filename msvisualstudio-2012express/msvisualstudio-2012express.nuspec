@@ -14,10 +14,6 @@
     <tags>visual-studio</tags>
     <summary>Microsoft Visual Studio 2012 Express</summary>
     <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2012 Express.</description>
-
-    <dependencies>
-      <dependency id="imdisk" version="2.0.10.20181231" />
-    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />

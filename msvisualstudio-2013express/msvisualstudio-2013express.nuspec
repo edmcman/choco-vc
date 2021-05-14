@@ -14,7 +14,6 @@
     <tags>visual-studio</tags>
     <summary>Microsoft Visual Studio 2013 Express</summary>
     <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2013 Express.</description>
-
   </metadata>
   <files>
     <file src="tools\**" target="tools" />

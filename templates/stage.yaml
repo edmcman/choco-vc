@@ -1,5 +1,6 @@
 parameters:
   name: ""
+  cmakeGenName: ""
 
 stages:
 - stage: ${{ replace(parameters.name, '-', '_') }}
@@ -14,6 +15,7 @@ stages:
   - template: test.yaml
     parameters:
       name: ${{ parameters.name }}
+      cmakeGenName: ${{ parameters.cmakeGenName }}
   - template: deploy.yaml
     parameters:
       name: ${{ parameters.name }}

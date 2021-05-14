@@ -1,11 +1,14 @@
 parameters:
   name: ""
+  cmakeGenName: ""
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
   dependsOn: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Test ${{ parameters.name }}
   steps:
+  # - powershell: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  #   displayName: Install chocolatey
   - task: Cache@2
     inputs:
       key: 'chocolatey | "$(Agent.OS)" | "${{ parameters.name }}" '
@@ -21,6 +24,21 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: choco install --pre ${{ parameters.name }}
+  # - script: echo "##vso[task.prependpath]%SystemRoot%\\windows32
+  #   displayName: Add system32 to path to work-around bug in the imdisk package
+  # - script: dir %SystemRoot%\\windows32
+  # - script: echo %path%
+  - script: choco install -y --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
+  - script: choco install -y cmake
+    displayName: Install cmake
+  - script: |
+      @echo on
+      cd tests
+      mkdir build
+      cd build
+      echo "##vso[task.prependpath]%ProgramFiles%\\cmake\\bin"
+      cmake.exe -G "${{ parameters.cmakeGenName }}" ..
+      cmake.exe --build . --verbose
+    displayName: Sanity check the compiler
 

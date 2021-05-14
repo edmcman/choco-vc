@@ -2,19 +2,18 @@
 
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>msvisualstudio-2015express</id>
-    <version>14.0.23107.0</version>
+    <id>msvisualstudio-2015community</id>
+    <version>14.0.25420.1</version>
     <packageSourceUrl>https://github.com/edmcman/choco-vc</packageSourceUrl>
     <owners>Edward J. Schwartz</owners>
 
-    <title>Visual Studio 2015 Express</title>
+    <title>Visual Studio 2015 Community Edition</title>
     <authors>Microsoft</authors>
     <projectUrl>https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0</projectUrl>
     <docsUrl>https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/welcome-to-visual-studio-2015?view=vs-2015</docsUrl>
     <tags>visual-studio</tags>
-    <summary>Microsoft Visual Studio 2015 Express</summary>
-    <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2015 Express.</description>
-
+    <summary>Microsoft Visual Studio 2015 Community Edition</summary>
+    <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2015 Community Edition.</description>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
