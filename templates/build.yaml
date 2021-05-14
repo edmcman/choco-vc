@@ -18,7 +18,7 @@ jobs:
       configFilePath: '.gitversion.master.yml'
     displayName: Set version using gitversion for master branch
   - powershell: |
-      Set-PSDebug -Trace 1
+      #Set-PSDebug -Trace 1
       cd ${{ parameters.name }}
       $ver = "$(GitVersion.NuGetVersionV2)"
       if ($ver -ne "") {
