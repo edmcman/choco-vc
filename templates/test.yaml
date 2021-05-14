@@ -4,6 +4,7 @@ parameters:
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
+  timeoutInMinutes: 120
   dependsOn: build_${{ replace(parameters.name, '-', '_') }}
   displayName: Test ${{ parameters.name }}
   steps:
@@ -20,7 +21,7 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: choco install -y --execution-timeout 3600 --pre ${{ parameters.name }}
+  - script: choco install -y --execution-timeout 7200 --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
   - script: |
       cat $(CHOCOLATEY_CACHE_DIR)\vs.log
