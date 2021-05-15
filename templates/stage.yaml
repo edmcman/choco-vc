@@ -16,9 +16,10 @@ stages:
     parameters:
       name: ${{ parameters.name }}
       cmakeGenName: ${{ parameters.cmakeGenName }}
-  - template: deploy.yaml
-    parameters:
-      name: ${{ parameters.name }}
+  - ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/release') }}:
+    - template: deploy.yaml
+      parameters:
+        name: ${{ parameters.name }}
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/release') }}:
   - stage: deploy_${{ replace(parameters.name, '-', '_') }}
     dependsOn: ${{ replace(parameters.name, '-', '_') }}
