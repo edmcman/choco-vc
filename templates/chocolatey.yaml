@@ -16,6 +16,8 @@ jobs:
             path: $(Build.ArtifactStagingDirectory)
           displayName: 'Download nuget packages'
 
-        - script: choco push $(Build.ArtifactStagingDirectory)\*.nupkg --source https://push.chocolatey.org/ --apikey $(chocolate-api-key)
+        - script: choco push $(Build.ArtifactStagingDirectory)\*.nupkg --source https://push.chocolatey.org/ --apikey %apikey%
           displayName: 'Uploading chocolatey package'
+          env:
+            apikey: $(chocolate-api-key)
 
