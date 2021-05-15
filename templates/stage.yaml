@@ -22,6 +22,8 @@ stages:
         name: ${{ parameters.name }}
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/release') }}:
   - stage: deploy_${{ replace(parameters.name, '-', '_') }}
+    pool:
+      vmImage: 'windows-latest'
     dependsOn: ${{ replace(parameters.name, '-', '_') }}
     displayName: Deploy ${{ parameters.name }} to Chocolatey
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
