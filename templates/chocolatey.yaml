@@ -10,11 +10,14 @@ jobs:
     runOnce:
       deploy:
         steps:
-        - download: current
-          artifact: ${{ parameters.name }}
+        - DownloadPipelineArtifact@2
+          inputs:
+            artifact: ${{ parameters.name }}
+            path: $(Build.ArtifactStagingDirectory)
           displayName: 'Download nuget packages'
 
-        - script: choco push *.nupkg --source https://push.chocolatey.org/ --apikey %apikey%
+        - script: choco push $(Build.ArtifactStagingDirectory)\*.nupkg --source https://push.chocolatey.org/ --apikey %apikey%
           displayName: 'Uploading chocolatey package'
           env:
             apikey: $(chocolate-api-key)
+
