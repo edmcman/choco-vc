@@ -10,7 +10,7 @@ jobs:
     runOnce:
       deploy:
         steps:
-        - DownloadPipelineArtifact@2
+        - task: DownloadPipelineArtifact@2
           inputs:
             artifact: ${{ parameters.name }}
             path: $(Build.ArtifactStagingDirectory)
