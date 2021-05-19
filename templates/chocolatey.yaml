@@ -19,5 +19,5 @@ jobs:
           displayName: 'Uploading chocolatey package'
           workingDirectory: $(Build.ArtifactStagingDirectory)
           env:
-            apikey: $(chocolate-api-key)
+            apikey: $(chocolatey-api-key)
 
