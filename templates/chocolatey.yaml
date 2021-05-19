@@ -15,7 +15,7 @@ jobs:
             artifact: ${{ parameters.name }}
             path: $(Build.ArtifactStagingDirectory)
           displayName: Download nuget packages for ${{ parameters.name }}
-        - powershell: choco push $(ls *.nupkg | % {$_.FullName}) --source https://push.chocolatey.org/ --apikey %apikey%
+        - powershell: choco push $(ls *.nupkg | % {$_.FullName}) --source https://push.chocolatey.org/ --apikey $env:apikey
           displayName: 'Uploading chocolatey package'
           workingDirectory: $(Build.ArtifactStagingDirectory)
           env:
