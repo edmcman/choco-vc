@@ -1,6 +1,7 @@
 parameters:
   name: ""
   cmakeGenArgs: ""
+  extraPath: ""
 
 stages:
 - stage: ${{ replace(parameters.name, '-', '_') }}
@@ -16,6 +17,7 @@ stages:
     parameters:
       name: ${{ parameters.name }}
       cmakeGenArgs: ${{ parameters.cmakeGenArgs }}
+      extraPath: ${{ parameters.extraPath }}
   - ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/release') }}:
     - template: deploy.yaml
       parameters:

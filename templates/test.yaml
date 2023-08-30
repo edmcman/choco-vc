@@ -1,6 +1,7 @@
 parameters:
   name: ""
   cmakeGenArgs: ""
+  extraPath: ""
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
@@ -31,6 +32,9 @@ jobs:
     condition: failed()
   - script: choco install -y cmake
     displayName: Install cmake
+  - script: echo "##vso[task.appendpath]${{ parameters.extraPath }}"
+    displayName: Add extra path
+    condition: ne(${{ parameters.extraPath}}, "")
   - script: |
       @echo on
       cd tests
