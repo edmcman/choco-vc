@@ -10,17 +10,17 @@ stages:
 - template: templates/stage.yaml
   parameters:
     name: msvisualcpp-2008sp1express
-    cmakeGenName: "Visual Studio 9 2008"
+    cmakeGenArgs: "-G \"Visual Studio 9 2008\""
 
 - template: templates/stage.yaml
   parameters:
     name: msvisualcpp-2010express
-    cmakeGenName: "Visual Studio 10 2010"
+    cmakeGenArgs: "-G \"Visual Studio 12 2013\" -T v100"
 
 - template: templates/stage.yaml
   parameters:
     name: msvisualstudio-2012express
-    cmakeGenName: "Visual Studio 11 2012"
+    cmakeGenArgs: "-G \"Visual Studio 11 2012\""
 
 # - template: templates/stage.yaml
 #   parameters:
@@ -29,11 +29,10 @@ stages:
 - template: templates/stage.yaml
   parameters:
     name: msvisualstudio-2013express
-    cmakeGenName: "Visual Studio 12 2013"
-
+    cmakeGenArgs: "-G \"Visual Studio 12 2013\""
 
 - template: templates/stage.yaml
   parameters:
     name: msvisualstudio-2015community
-    cmakeGenName: "Visual Studio 14 2015"
+    cmakeGenArgs: "-G \"Visual Studio 14 2015\""
 
