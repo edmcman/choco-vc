@@ -14,6 +14,9 @@
     <tags>visual-studio</tags>
     <summary>Microsoft Visual Studio 2015 Community Edition</summary>
     <description>A historical version of Microsoft's Visual Studio compiler, Visual Studio 2015 Community Edition.</description>
+    <dependencies>
+      <dependency id="windows-sdk-8.1" />
+    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />

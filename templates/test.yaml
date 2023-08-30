@@ -1,6 +1,6 @@
 parameters:
   name: ""
-  cmakeGenName: ""
+  cmakeGenArgs: ""
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
@@ -21,7 +21,7 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: choco install -y --execution-timeout 7200 --pre ${{ parameters.name }}
+  - script: choco install -y -d --execution-timeout 7200 --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
   - script: |
       cat $(CHOCOLATEY_CACHE_DIR)\vs.log
@@ -37,7 +37,7 @@ jobs:
       mkdir build
       cd build
       echo "##vso[task.prependpath]%ProgramFiles%\\cmake\\bin"
-      cmake.exe -G "${{ parameters.cmakeGenName }}" ..
+      cmake.exe ${{ parameters.cmakeGenArgs }} ..
       cmake.exe --build . --verbose
     displayName: Sanity check the compiler
 
