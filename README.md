@@ -4,10 +4,6 @@ This project contains source files to create
 [Chocolatey](https://chocolatey.org/) packages for historical versions
 of Visual C++ and Visual Studio.
 
-## To use:
-
-`choco source add -n=ed -s "https://pkgs.dev.azure.com/edmcman/choco-vc/_packaging/choco-vc@Local/nuget/v2"`
-
 # Todo
 
 - [x] Figure out how to integrate
