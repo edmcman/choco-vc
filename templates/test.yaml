@@ -33,8 +33,8 @@ jobs:
   - script: |
       @echo on
       choco install -y cmake
-      echo "##vso[task.prependpath]%ProgramFiles%\\cmake\\bin"
-      echo "[task.prependpath]%ProgramFiles%\\cmake\\bin"
+      echo "##vso[task.prependpath]%ProgramFiles%\cmake\bin"
+      echo "[task.prependpath]%ProgramFiles%\cmake\bin"
     displayName: Install cmake
   - script: echo "##vso[task.prependpath]${{ parameters.extraPath }}"
     displayName: Add extra path
@@ -45,8 +45,8 @@ jobs:
       mkdir build
       cd build
       echo %PATH% $env:path
-      echo %ProgramFiles%\\cmake\\bin
-      dir %ProgramFiles%\\cmake\\bin
+      echo %ProgramFiles%\cmake\bin
+      dir %ProgramFiles%\cmake\bin\*
       cmake.exe ${{ parameters.cmakeGenArgs }} ..
       cmake.exe --build . --verbose
     displayName: Sanity check the compiler
