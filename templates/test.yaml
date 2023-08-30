@@ -31,8 +31,10 @@ jobs:
     displayName: Debug
     condition: failed()
   - script: |
+      @echo on
       choco install -y cmake
       echo "##vso[task.prependpath]%ProgramFiles%\\cmake\\bin"
+      echo "[task.prependpath]%ProgramFiles%\\cmake\\bin"
     displayName: Install cmake
   - script: echo "##vso[task.prependpath]${{ parameters.extraPath }}"
     displayName: Add extra path
@@ -42,7 +44,8 @@ jobs:
       cd tests
       mkdir build
       cd build
-      echo $Env:Path
+      echo %ProgramFiles%\\cmake\\bin
+      dir %ProgramFiles%\\cmake\\bin
       cmake.exe ${{ parameters.cmakeGenArgs }} ..
       cmake.exe --build . --verbose
     displayName: Sanity check the compiler
