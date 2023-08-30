@@ -22,8 +22,8 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-#  - script: choco install -y -d --execution-timeout 7200 --pre ${{ parameters.name }}
-#    displayName: Install new chocolatey package ${{ parameters.name }}
+  - script: choco install -y -d --execution-timeout 7200 --pre ${{ parameters.name }}
+    displayName: Install new chocolatey package ${{ parameters.name }}
   - script: |
       cat $(CHOCOLATEY_CACHE_DIR)\vs.log
       cat C:\ProgramData\chocolatey\logs\chocolatey.log
