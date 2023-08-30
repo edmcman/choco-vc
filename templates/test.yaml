@@ -44,6 +44,7 @@ jobs:
       cd tests
       mkdir build
       cd build
+      echo %PATH% $env:path
       echo %ProgramFiles%\\cmake\\bin
       dir %ProgramFiles%\\cmake\\bin
       cmake.exe ${{ parameters.cmakeGenArgs }} ..
