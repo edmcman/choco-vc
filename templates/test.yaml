@@ -34,7 +34,7 @@ jobs:
     displayName: Install cmake
   - script: echo "##vso[task.appendpath]${{ parameters.extraPath }}"
     displayName: Add extra path
-    condition: and(succeeded(), ne('${{ parameters.extraPath}}', '')
+    condition: and(succeeded(), ne('${{ parameters.extraPath}}', ''))
   - script: |
       @echo on
       cd tests
