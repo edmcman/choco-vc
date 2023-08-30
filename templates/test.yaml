@@ -32,7 +32,7 @@ jobs:
     condition: failed()
   - script: choco install -y cmake
     displayName: Install cmake
-  - script: echo "##vso[task.appendpath]${{ parameters.extraPath }}"
+  - script: echo "##vso[task.prependpath]${{ parameters.extraPath }}"
     displayName: Add extra path
     condition: and(succeeded(), ne('${{ parameters.extraPath}}', ''))
   - script: |
