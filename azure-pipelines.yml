@@ -16,7 +16,7 @@ stages:
   parameters:
     name: msvisualcpp-2010express
     cmakeGenArgs: "-G \"Visual Studio 12 2013\" -T v100"
-    extraPath: "%SystemRoot%\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild.exe"
+    extraPath: "%SystemRoot%\\Microsoft.NET\\Framework\\v4.0.30319"
 
 - template: templates/stage.yaml
   parameters:
