@@ -37,9 +37,7 @@ jobs:
       echo [task.prependpath]%ProgramFiles%\cmake\bin
     displayName: Install cmake
   - script: |
-      @echo on
       echo ##vso[task.prependpath]${{ parameters.extraPath }}
-      echo debug vso[task.prependpath]${{ parameters.extraPath }}
     displayName: Add extra path
     condition: and(succeeded(), ne('${{ parameters.extraPath}}', ''))
   - script: |
