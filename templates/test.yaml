@@ -1,6 +1,7 @@
 parameters:
   name: ""
   cmakeGenArgs: ""
+  extraPath: ""
 
 jobs:
 - job: test_${{ replace(parameters.name, '-', '_') }}
@@ -21,23 +22,30 @@ jobs:
     displayName: Add chocolatey repo
   - script: choco config set cacheLocation "$(CHOCOLATEY_CACHE_DIR)"
     displayName: Set chocolatey cache dir
-  - script: choco install -y -d --execution-timeout 7200 --pre ${{ parameters.name }}
+  - script: |
+      @echo on
+      choco install -y cmake
+      echo ##vso[task.prependpath]%ProgramFiles%\cmake\bin
+    displayName: Install cmake
+  - script: choco install -y --execution-timeout 7200 --pre ${{ parameters.name }}
     displayName: Install new chocolatey package ${{ parameters.name }}
   - script: |
       cat $(CHOCOLATEY_CACHE_DIR)\vs.log
       cat C:\ProgramData\chocolatey\logs\chocolatey.log
       fail >nul
-    displayName: Debug
+    displayName: Debug on failure
     condition: failed()
-  - script: choco install -y cmake
-    displayName: Install cmake
+  - script: |
+      echo ##vso[task.prependpath]${{ parameters.extraPath }}
+    displayName: Add extra path
+    condition: and(succeeded(), ne('${{ parameters.extraPath}}', ''))
   - script: |
       @echo on
       cd tests
       mkdir build
       cd build
-      echo "##vso[task.prependpath]%ProgramFiles%\\cmake\\bin"
-      cmake.exe ${{ parameters.cmakeGenArgs }} ..
+      cmake.exe --trace ${{ parameters.cmakeGenArgs }} ..
+      dir
       cmake.exe --build . --verbose
     displayName: Sanity check the compiler
 
