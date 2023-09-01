@@ -12,7 +12,7 @@ $driveLetter = (Get-DiskImage $iso | Get-Volume).DriveLetter
 
 # Run commands against the mounted ISO, in this case, run the setup.exe
 
-Install-ChocolateyInstallPackage "$packageName" 'exe' "/q /norestart /adminfile \"${toolsDir}/admin.xml\" /log $env:temp\vs.log" "${driveLetter}:\vs_community.exe"
+Install-ChocolateyInstallPackage "$packageName" 'exe' "/q /norestart /adminfile ${toolsDir}/admin.xml /log $env:temp\vs.log" "${driveLetter}:\vs_community.exe"
 
 # Unmount the ISO file when finished
 Dismount-DiskImage -ImagePath $iso
