@@ -8,6 +8,14 @@ seemed like extra, unneeded work.  The packages are available in this
 [NuGet
 repository](https://pkgs.dev.azure.com/edmcman/choco-vc/_packaging/choco-vc@Local/nuget/v2).
 
+This repository was created primarily to support
+[BuildExes](https://github.com/sei-eschwartz/buildexes), a project
+that builds executables using many versions of Visual C++.  Many of
+the packages on Chocolatey for older versions of Visual C++ no longer
+work because Microsoft (intentionally) broke the web installers as a
+consequence of [phasing out
+SHA1](https://developercommunity.visualstudio.com/t/old-visual-studio-web-installers-no-longer-functio/1409036?from=email).
+
 ## Quick start
 
 You can install the packages with [Chocolatey](https://chocolatey.org/):
