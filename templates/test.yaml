@@ -44,7 +44,8 @@ jobs:
       cd tests
       mkdir build
       cd build
-      cmake.exe ${{ parameters.cmakeGenArgs }} ..
+      cmake.exe --trace ${{ parameters.cmakeGenArgs }} ..
+      dir
       cmake.exe --build . --verbose
     displayName: Sanity check the compiler
 
